@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <span> Age:</span>
+
+  <select id="on-change">
+    <option value="20">20</option>
+    <option value="21">21</option>
+    <option value="22">22</option>
+    <option value="23">23</option>
+  </select>
+  <table id="students-table">
+
+  </table>
+  <script type="text/javascript">
+    var $tableStudent = document.getElementById('students-table');
+    var $selectOnChange = document.getElementById('on-change');
+
+    var students = [
+      {name: 'Minh', age: 20},
+      {name: 'Hoang', age: 21},
+      {name: 'Duy', age: 23},
+      {name: 'Hoang', age: 22}
+    ];
+
+    function render(students) {
+      var newStudent =  students.map(function(student) {
+         return `<tr><td>${student.name}</td> <td>${student.age}</td></tr>`;
+      });
+
+      $tableStudent.innerHTML = newStudent.join('');
+    }
+
+    function selectStudent() {
+      var ageValueStudent =  $selectOnChange.value;
+      var newStudent = students.filter(function(student){
+        return parseInt(student.age) == parseInt(ageValueStudent);
+      });
+
+      console.log(newStudent);
+
+      render(newStudent);
+    }
+
+    $selectOnChange.addEventListener('change', selectStudent);
+
+  </script>
+
+</body>
+</html>
